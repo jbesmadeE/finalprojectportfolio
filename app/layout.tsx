@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "JB Esmade — Portfolio",
   description:
     "John Brian Esmade, E-commerce Virtual Asistant SEO analysis, AI Automation.",
+  verification: {
+    google: "7nUzGqxcpEObOYLsroBkoXmWrB-tFMvciJOcYQClfh0",
+  },
 };
 
 export const viewport: Viewport = {

@@ -30,7 +30,11 @@ export async function POST(request: Request) {
       return result.toTextStreamResponse();
     } catch (error) {
       console.error("[chat] streaming failed:", error);
-      return Response.json({ error: "Chat unavailable. Try again." }, { status: 500 });
+      const message =
+        error instanceof Error && error.message
+          ? error.message
+          : "Chat unavailable. Try again.";
+      return Response.json({ error: `Chat unavailable: ${message}` }, { status: 500 });
     }
   }
 
