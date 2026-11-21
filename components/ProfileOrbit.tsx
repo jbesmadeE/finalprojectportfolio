@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import SkillIcon from "@/components/SkillIcon";
 import { about } from "@/lib/data/about";
 import { skills } from "@/lib/data/skills";
-import { speakProfileIntro } from "@/lib/speak";
+import { prewarmSpeech, speakProfileIntro } from "@/lib/speak";
 
 /**
  * Profile animation with skill icons orbiting around it (layout.md).
@@ -28,6 +28,12 @@ import { speakProfileIntro } from "@/lib/speak";
 export default function ProfileOrbit({ className = "" }: { className?: string }) {
   const [photoFailed, setPhotoFailed] = useState(false);
   const reducedMotion = useReducedMotion();
+
+  // Mobile engines build their voice list asynchronously and drop speech queued
+  // before it is ready, so warm it while the user is still looking at the hero.
+  useEffect(() => {
+    prewarmSpeech();
+  }, []);
 
   const orbitTransition = { duration: 48, ease: "linear" as const, repeat: Infinity };
 
