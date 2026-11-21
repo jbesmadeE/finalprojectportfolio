@@ -123,7 +123,7 @@ function parseListing(block: string): JobListing | null {
   return { title, author, rate, url, postedAt, jobType, categories };
 }
 
-export function parseOnlineJobsSearchHtml(
+function parseOnlineJobsSearchHtml(
   html: string,
   keyword: string,
 ): JobsResponse {

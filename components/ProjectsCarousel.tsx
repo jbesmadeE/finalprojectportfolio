@@ -132,7 +132,7 @@ function ProjectSlide({
         className="group relative block h-full w-full overflow-hidden rounded-xl border border-white/10 bg-surface text-left transition-all duration-200 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.25)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         {project.image ? (
-          // eslint-disable-next-line @next/next/no-img-element -- placeholder pipeline; swap to next/image when real assets land
+          // eslint-disable-next-line @next/next/no-img-element -- local asset inside a client carousel
           <img
             src={project.image}
             alt=""

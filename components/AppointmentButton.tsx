@@ -3,7 +3,7 @@ import { links } from "@/lib/data/links";
 
 /**
  * Primary CTA — opens the Google Calendar booking link.
- * External link: target="_blank" rel="noopener noreferrer" per AGENTS.md.
+ * External link: target="_blank" rel="noopener noreferrer" per layout.md.
  */
 export default function AppointmentButton({ className = "" }: { className?: string }) {
   return (

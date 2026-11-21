@@ -12,7 +12,7 @@ import WeatherLayer from "@/components/WeatherLayer";
 /**
  * Single-screen shell (h-dvh, no page scroll) per layout.md.
  * One DOM, two layouts via grid areas:
- * - Mobile:  compact About; callout bubble above tools (points at Walmart); photo left and tools right; actions below; carousels bottom
+ * - Mobile:  compact About; callout bubble in tools column points at Walmart; photo left and tools right; actions below; carousels bottom
  * - Desktop: compact About top; enlarged photo left, tools right (with bubble above tools), actions below;
  *            carousels bottom; chatbot floats.
  * ShowcaseProvider supplies the shared bottom-sheet state for the carousels.
@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <ShowcaseProvider>
       <main className="relative flex h-dvh flex-col overflow-hidden bg-transparent text-zinc-100">
-        {/* Dynamic client-side weather background & minimal corner control */}
+        {/* Dynamic client-side weather background & control pill slotted into the tools column */}
         <WeatherLayer />
 
         {/* About — top band on both layouts */}

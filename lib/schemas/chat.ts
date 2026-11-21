@@ -13,4 +13,3 @@ export const chatRequestSchema = z.object({
 });
 
 export type ChatRequest = z.infer<typeof chatRequestSchema>;
-export type ChatMessage = ChatRequest["messages"][number];

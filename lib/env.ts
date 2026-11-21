@@ -59,12 +59,7 @@ export const llmConfigured = Boolean(env.OPENAI_API_KEY);
 export const cloudflareImageConfigured = Boolean(
   env.CLOUDFLARE_ACCOUNT_ID && env.CLOUDFLARE_API_TOKEN,
 );
-/** Real image generation is available when Cloudflare Workers AI is configured. */
-export const imageConfigured = cloudflareImageConfigured;
 export const magicHourConfigured = Boolean(env.MAGIC_HOUR_API_KEY);
-/** Real video generation is available when Magic Hour is configured. */
-export const videoConfigured = magicHourConfigured;
-export const jobsConfigured = Boolean(env.JOBS_API_KEY);
 
 export const magicHourConfig = {
   apiKey: env.MAGIC_HOUR_API_KEY,

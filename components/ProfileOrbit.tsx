@@ -22,8 +22,8 @@ import { playProfileIntro, prewarmIntro } from "@/lib/speak";
  *
  * Under prefers-reduced-motion a single static frame is shown instead; if
  * the asset fails to load, an initials fallback renders. The orbit and profile
- * are interactive: pressing the profile or any orbital icon plays a spoken intro
- * (Web Speech API) on both mobile and desktop.
+ * are interactive: pressing the profile or any orbital icon plays the recorded
+ * profile intro on both mobile and desktop.
  */
 export default function ProfileOrbit({ className = "" }: { className?: string }) {
   const [photoFailed, setPhotoFailed] = useState(false);
@@ -62,7 +62,7 @@ export default function ProfileOrbit({ className = "" }: { className?: string })
                 animate={reducedMotion ? undefined : { rotate: -360 }}
                 transition={orbitTransition}
               >
-                {/* Press/tap/click → plays intro speech; hover/tap also animate. */}
+                {/* Press/tap/click plays the recorded intro; hover/tap also animate. */}
                 <motion.button
                   type="button"
                   onClick={playProfileIntro}

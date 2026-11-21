@@ -27,9 +27,8 @@ type ShowcaseContextValue = {
 const ShowcaseContext = createContext<ShowcaseContextValue | null>(null);
 
 /**
- * Shared state for the Stage 2 showcase: the projects/skills carousels and
- * the orbit can open bottom sheets; the sheets themselves render here so
- * there is exactly one <BottomSheet> instance in the tree.
+ * Shared state for the showcase carousels; the sheets render here so there is
+ * exactly one <BottomSheet> instance in the tree.
  */
 export function useShowcase(): ShowcaseContextValue {
   const value = useContext(ShowcaseContext);
@@ -95,7 +94,7 @@ function ProjectSheetBody({ project }: { project: Project }) {
     <div className="flex h-full min-h-0 flex-col gap-3">
       <div className="relative min-h-0 flex-1 overflow-hidden rounded-xl border border-white/10 bg-surface">
         {project.image ? (
-          // eslint-disable-next-line @next/next/no-img-element -- arbitrary remote-free local asset inside a client sheet; swap to next/image when real images land
+          // eslint-disable-next-line @next/next/no-img-element -- local asset inside a client sheet
           <img
             src={project.image}
             alt={project.title}

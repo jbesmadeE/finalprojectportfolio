@@ -8,7 +8,7 @@ import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import { env, llmConfigured } from "@/lib/env";
 
 /** Resume text provided by the user (source: public/projects/John Brian C Esmade (JB).pdf). */
-export const JB_RESUME_TEXT = `John Brian C Esmade (JB)
+const JB_RESUME_TEXT = `John Brian C Esmade (JB)
 E-commerce Operations Specialist · Workflow Automation · SEO & Digital Marketing
 Iligan City, Philippines · 
  jbesmade@gmail.com · 
@@ -48,7 +48,7 @@ Use AI-assisted "vibe coding" to build quick tools and scripts that speed up cli
 work`;
 
 /** Descriptions of available workspace/tool functions on this site. */
-export const WORKSPACE_FUNCTIONS_TEXT = `
+const WORKSPACE_FUNCTIONS_TEXT = `
 Available workspace tools/functions on this portfolio site:
 1. Walmart Product Hunter: input a keyword and optional min/max price (USD); returns ranked Walmart product listings with opportunity score, price, rating, review count, reasons, and listing URL. Results can be exported as JSON. May show mock data when live results are not configured.
 2. Amazon Product Hunter: same inputs and outputs as Walmart Product Hunter, but for Amazon listings.

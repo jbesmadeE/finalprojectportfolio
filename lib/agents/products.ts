@@ -1,8 +1,7 @@
 /**
  * Shared logic for the Walmart + Amazon Product Hunters.
- * Data comes from the ProductProvider; when the LLM gateway is configured
- * the listings get re-scored with a real opportunity analysis, otherwise
- * the provider's scores are used (mock mode).
+ * Listings come from the ProductProvider; optional LLM scoring falls back to
+ * the provider's own scores when it fails or is not configured.
  */
 import { z } from "zod";
 import {
@@ -61,8 +60,7 @@ export async function runProductHunter(
     maxPrice: request.maxPrice ?? null,
   });
 
-  // The mock provider already ships scores; real providers benefit from
-  // LLM scoring. Failures fall back to the provider's own scores.
+  // Failures fall back to the provider's own scores.
   if (llmConfigured && listings.length > 0) {
     try {
       listings = await scoreWithLLM(listings);

@@ -57,7 +57,7 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Respect prefers-reduced-motion everywhere (AGENTS.md rule) */
+/* Respect prefers-reduced-motion everywhere */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

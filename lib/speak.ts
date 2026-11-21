@@ -11,7 +11,7 @@
  * below.
  */
 
-export const PROFILE_INTRO_TEXT =
+const PROFILE_INTRO_TEXT =
   "Hi my name is JB. To know more about me. Book an appointment!  I am a results-driven virtual assistant and agency operator with 15+ years in digital marketing and e-commerce. Started in SEO in 2006 and went on to run a multi-VA agency managing marketplace stores across Amazon, Walmart, eBay and Newegg using dropshipping, 2- step, FBA and WFS fulfillment models. Strong at building automations that cut manual work, and at training and leading remote teams.";
 
 /** Recorded intro, served from public/audio. */
@@ -189,7 +189,7 @@ function queueChunks(
  * The first utterance is queued synchronously inside the tap so iOS keeps the
  * user gesture; only a repeat tap waits a tick for cancel() to settle.
  */
-export function speakText(text: string): void {
+function speakText(text: string): void {
   const synth = getSynth();
   if (!synth) return;
 

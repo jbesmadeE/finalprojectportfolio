@@ -1,9 +1,4 @@
-/**
- * Product-hunting provider adapter (Walmart + Amazon share this shape).
- * Real implementation (Stage 4) will use scraping/API + LLM scoring;
- * mock mode is the fallback when no credentials are configured.
- */
-import { providerMode, type ProviderMode } from "@/lib/env";
+import type { ProviderMode } from "@/lib/env";
 
 export type ProductListing = {
   title: string;
@@ -12,9 +7,7 @@ export type ProductListing = {
   rating: number | null;
   reviewCount: number | null;
   url: string;
-  /** LLM-computed 0–100 opportunity score (higher = better bet). */
   opportunityScore: number | null;
-  /** One-line reasons backing the score. */
   reasons: string[];
 };
 
@@ -25,7 +18,6 @@ export interface ProductSearchInput {
 }
 
 export interface ProductProvider {
-  /** Marketplace id, e.g. "walmart" | "amazon" — used for rate-limit keys. */
   readonly marketplace: string;
   search(input: ProductSearchInput): Promise<ProductListing[]>;
 }
@@ -38,7 +30,6 @@ const MOCK_TITLES = [
   "Portable Blender, USB Rechargeable",
 ];
 
-/** Deterministic pseudo-data so UIs can be built and demoed offline. */
 export class MockProductProvider implements ProductProvider {
   readonly marketplace: string;
 
@@ -49,9 +40,7 @@ export class MockProductProvider implements ProductProvider {
   async search(input: ProductSearchInput): Promise<ProductListing[]> {
     await new Promise((resolve) => setTimeout(resolve, 400));
     return MOCK_TITLES.map((base, index) => {
-      const title = input.keyword
-        ? `${input.keyword} — ${base}`
-        : base;
+      const title = input.keyword ? `${input.keyword} — ${base}` : base;
       return {
         title,
         price: 9.99 + index * 7.5,
@@ -74,9 +63,5 @@ export function getProductProvider(marketplace: string): {
   mode: ProviderMode;
   provider: ProductProvider;
 } {
-  // Product hunting shares the LLM gateway: scoring needs an LLM; the data
-  // side is scraping/API work done in Stage 4.
-  const mode = providerMode(true);
-  void mode; // real-vs-mock wiring lands in Stage 4
   return { mode: "mock", provider: new MockProductProvider(marketplace) };
 }

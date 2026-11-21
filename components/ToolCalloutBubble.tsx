@@ -3,12 +3,12 @@
 /**
  * Cartoon speech-bubble callout about the tool stack.
  *
- * Two visual modes, controlled by the `variant` prop:
- *  - "mobile"  — wide strip (icon-left, text-right), right-aligned above the
- *                tool list so its tail points at the Walmart Product Hunter
- *                button. Used inside ToolButtons (hidden on lg).
- *  - "desktop" — vertical bubble with shadow depth.
- *                Used inside ToolButtons (lg: only, hidden on mobile).
+ * Two exports:
+ *  - MobileBubble  — wide strip (icon-left, text-right), right-aligned above the
+ *                    tool list so its tail points at the Walmart Product Hunter
+ *                    button. Used inside ToolButtons (hidden on lg).
+ *  - DesktopBubble — vertical bubble with shadow depth.
+ *                    Used inside ToolButtons (lg: only, hidden on mobile).
  */
 
 const CHAT_ICON = (

@@ -18,21 +18,21 @@ const buckets = new Map<string, Bucket>();
 /** Prune when the map grows past this (dev-scale safety valve). */
 const PRUNE_THRESHOLD = 500;
 
-export type RateLimitOptions = {
+type RateLimitOptions = {
   /** Requests allowed per window. */
   limit?: number;
   /** Window length in ms. */
   windowMs?: number;
 };
 
-export type RateLimitResult = {
+type RateLimitResult = {
   ok: boolean;
   remaining: number;
   /** ms until the window resets (0 when ok). */
   retryInMs: number;
 };
 
-export function getClientIp(request: Request): string {
+function getClientIp(request: Request): string {
   const forwarded = request.headers.get("x-forwarded-for");
   if (forwarded) {
     const first = forwarded.split(",")[0]?.trim();
@@ -44,7 +44,7 @@ export function getClientIp(request: Request): string {
 /**
  * Fixed-window limiter keyed by `${routeName}:${ip}`.
  */
-export function rateLimit(
+function rateLimit(
   key: string,
   { limit = 10, windowMs = 60_000 }: RateLimitOptions = {},
 ): RateLimitResult {
