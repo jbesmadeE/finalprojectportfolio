@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import SkillIcon from "@/components/SkillIcon";
 import { about } from "@/lib/data/about";
 import { skills } from "@/lib/data/skills";
-import { prewarmSpeech, speakProfileIntro } from "@/lib/speak";
+import { playProfileIntro, prewarmIntro } from "@/lib/speak";
 
 /**
  * Profile animation with skill icons orbiting around it (layout.md).
@@ -29,10 +29,10 @@ export default function ProfileOrbit({ className = "" }: { className?: string })
   const [photoFailed, setPhotoFailed] = useState(false);
   const reducedMotion = useReducedMotion();
 
-  // Mobile engines build their voice list asynchronously and drop speech queued
-  // before it is ready, so warm it while the user is still looking at the hero.
+  // Buffer the recorded intro and the fallback voice list before the first tap
+  // so the clip starts instantly on mobile.
   useEffect(() => {
-    prewarmSpeech();
+    prewarmIntro();
   }, []);
 
   const orbitTransition = { duration: 48, ease: "linear" as const, repeat: Infinity };
@@ -65,7 +65,7 @@ export default function ProfileOrbit({ className = "" }: { className?: string })
                 {/* Press/tap/click → plays intro speech; hover/tap also animate. */}
                 <motion.button
                   type="button"
-                  onClick={speakProfileIntro}
+                  onClick={playProfileIntro}
                   className="flex cursor-pointer flex-col items-center gap-0.5 border-0 bg-transparent p-0"
                   whileHover={{ scale: 1.15 }}
                   whileTap={{ scale: 1.35 }}
@@ -92,7 +92,7 @@ export default function ProfileOrbit({ className = "" }: { className?: string })
       <div className="absolute left-1/2 top-1/2 z-0 w-[80%] max-w-[14.5rem] -translate-x-1/2 -translate-y-1/2 sm:w-[70%] sm:max-w-none lg:w-[92%] xl:w-[94%]">
         <button
           type="button"
-          onClick={speakProfileIntro}
+          onClick={playProfileIntro}
           className="block w-full cursor-pointer border-0 bg-transparent p-0 text-left"
           aria-label={`Play introduction for ${about.name}`}
         >
